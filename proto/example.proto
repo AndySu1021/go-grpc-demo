@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package proto;
+option go_package = "go-grpc-demo/proto";
+
+message ProtoRequest {
+  int64 number = 1;
+}
+
+message ProtoResponse {
+  int64 result = 1;
+}
+
+service ProtoService {
+  rpc Square(ProtoRequest) returns (ProtoResponse) {}
+  rpc Sum(stream ProtoRequest) returns (ProtoResponse) {}
+  rpc Loop(ProtoRequest) returns (stream ProtoResponse) {}
+  rpc SumAndReturn(stream ProtoRequest) returns (stream ProtoResponse) {}
+}
